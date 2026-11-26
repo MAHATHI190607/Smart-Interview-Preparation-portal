@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{% block title %}Smart Interview Preparation Portal{% endblock %}</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+{% if logged_user %}
+<header class="topbar">
+  <a class="brand" href="{{ url_for('dashboard') }}"><span class="brand-icon">✦</span><span>Smart Interview <b>Preparation Portal</b></span></a>
+  <nav class="topnav">
+    <a href="{{ url_for('practice') }}">◉ Explore</a><a href="{{ url_for('dashboard') }}">▦ Dashboard</a>
+    <a href="{{ url_for('resume') }}">▤ Resume AI</a><a href="{{ url_for('tracker') }}">▣ Tracker</a>
+    <a href="{{ url_for('profile') }}">♙ Profile</a>
+  </nav>
+  <div class="user-chip"><span class="avatar">{{ logged_user.name[0]|upper }}</span><span>{{ logged_user.name }}</span><a class="logout" href="{{ url_for('logout') }}">↗</a></div>
+</header>
+{% endif %}
+{% with messages = get_flashed_messages(with_categories=true) %}
+{% if messages %}<div class="flash-wrap">{% for category,message in messages %}<div class="flash {{ category }}">{{ message }}</div>{% endfor %}</div>{% endif %}
+{% endwith %}
+<main class="{% if logged_user %}app-main{% else %}public-main{% endif %}">{% block content %}{% endblock %}</main>
+<footer class="footer">© {{ current_year }} Smart Interview Preparation Portal · Learn, practise and grow with confidence.</footer>
+<script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body></html>

@@ -1,0 +1,8 @@
+{% extends "base.html" %}{% block title %}Interview Practice{% endblock %}
+{% block content %}<div class="page-heading"><div><div class="eyebrow">LEARN · PRACTISE · IMPROVE</div><h1>Interview Practice</h1><p>Choose a category and test your knowledge with a short assessment.</p></div></div>
+<div class="practice-grid">
+<a class="practice-card" href="{{ url_for('quiz',category='Technical') }}"><span class="practice-symbol purple">⌘</span><span class="pill">5 QUESTIONS</span><h2>Technical Skills</h2><p>Programming basics, data structures, databases and software concepts.</p><b>Start technical quiz <span>→</span></b></a>
+<a class="practice-card" href="{{ url_for('quiz',category='HR') }}"><span class="practice-symbol blue">♙</span><span class="pill">5 QUESTIONS</span><h2>HR & Behavioural</h2><p>Practise common HR questions and workplace communication scenarios.</p><b>Start HR quiz <span>→</span></b></a>
+<a class="practice-card" href="{{ url_for('quiz',category='Aptitude') }}"><span class="practice-symbol orange">∑</span><span class="pill">5 QUESTIONS</span><h2>Aptitude</h2><p>Improve numerical ability, reasoning and quick problem solving.</p><b>Start aptitude quiz <span>→</span></b></a>
+</div>
+<div class="tip-banner"><span>✦</span><div><b>Small steps every day lead to big results!</b><p>Review your answers after each quiz and focus on the topics that need more practice.</p></div></div>{% endblock %}

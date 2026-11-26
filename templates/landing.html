@@ -1,0 +1,15 @@
+{% extends "base.html" %}{% block title %}Smart Interview Preparation Portal{% endblock %}
+{% block content %}
+<section class="hero landing-hero">
+ <div class="hero-copy"><div class="eyebrow">✧ YOUR CAREER PREPARATION PARTNER</div><h1>Prepare smarter.<br><span>Interview with confidence.</span></h1>
+ <p>One place to screen your resume, practise interview questions, track your progress and organise every job application.</p>
+ <div class="hero-actions"><a class="btn primary" href="{{ url_for('register') }}">Get started <span>→</span></a><a class="btn secondary" href="{{ url_for('login') }}">I already have an account</a></div>
+ <div class="mini-trust"><span>✓ Resume feedback</span><span>✓ Skill practice</span><span>✓ Application tracking</span></div></div>
+ <div class="hero-art"><div class="art-orbit"></div><div class="art-card"><div class="art-top"><span>✦</span> Your preparation snapshot</div><div class="art-score">78<small>%</small></div><div class="progress"><i style="width:78%"></i></div><p>Keep building your skills</p><div class="art-tags"><span>Resume AI</span><span>Mock practice</span><span>Career tracker</span></div></div><div class="floating-bubble">✧ AI-powered guidance</div></div>
+</section>
+<section class="feature-grid">
+ <article class="feature"><span class="feature-icon blue">▤</span><h3>AI Resume Screening</h3><p>Upload your PDF resume and receive skill insights, strengths and improvement suggestions.</p></article>
+ <article class="feature"><span class="feature-icon purple">✎</span><h3>Interview Practice</h3><p>Practise technical, HR and aptitude questions and review your quiz results.</p></article>
+ <article class="feature"><span class="feature-icon green">▣</span><h3>Application Tracker</h3><p>Organise opportunities from saved listings to interviews, offers and closed applications.</p></article>
+</section>
+{% endblock %}

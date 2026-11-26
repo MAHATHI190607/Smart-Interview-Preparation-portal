@@ -1,0 +1,20 @@
+{% extends "base.html" %}{% block title %}Dashboard · Smart Interview Portal{% endblock %}
+{% block content %}
+<section class="welcome-banner"><div><div class="eyebrow">✧ SMART INTERVIEW PREPARATION PORTAL</div><h1>Welcome back, {{ logged_user.name }}! <span>👋</span></h1><p>Your personalised learning journey is here. Explore opportunities, practise interviews, and build your career with confidence.</p><div class="hero-actions"><a class="btn primary" href="{{ url_for('practice') }}">Explore practice →</a><a class="btn secondary" href="{{ url_for('tracker') }}">View tracker pipeline</a></div></div><div class="welcome-illustration">✦<div>🎓</div></div></section>
+<section class="stats-grid">
+ <div class="stat-card"><span class="stat-icon blue">▤</span><div><small>Total Questions Practised</small><strong>{{ total_q }}</strong><em>Across all assessments</em></div></div>
+ <div class="stat-card"><span class="stat-icon green">◎</span><div><small>Assessments Completed</small><strong>{{ assessment_count }}</strong><em>Recent attempts shown</em></div></div>
+ <div class="stat-card"><span class="stat-icon purple">▣</span><div><small>Active Applications</small><strong>{{ applications|length }}</strong><em>Tracked opportunities</em></div></div>
+ <div class="stat-card"><span class="stat-icon orange">★</span><div><small>Average Performance</small><strong>{{ avg }}%</strong><em>Based on quiz history</em></div></div>
+</section>
+<section class="dashboard-grid"><div class="panel wide"><div class="panel-head"><div><h2>Recommended for you</h2><p>Start with these important preparation areas</p></div><a href="{{ url_for('practice') }}">View all →</a></div>
+<div class="recommend-list">
+ <a class="recommend" href="{{ url_for('quiz',category='Technical') }}"><span class="rec-icon purple">⌘</span><div><b>Technical fundamentals</b><small>Programming, databases and problem solving</small></div><span class="pill">Technical</span><span class="arrow">→</span></a>
+ <a class="recommend" href="{{ url_for('quiz',category='HR') }}"><span class="rec-icon blue">♙</span><div><b>HR interview questions</b><small>Communication and behavioural questions</small></div><span class="pill green-pill">HR</span><span class="arrow">→</span></a>
+ <a class="recommend" href="{{ url_for('quiz',category='Aptitude') }}"><span class="rec-icon orange">∑</span><div><b>Aptitude practice</b><small>Numerical reasoning and logical thinking</small></div><span class="pill orange-pill">Aptitude</span><span class="arrow">→</span></a>
+ <a class="recommend" href="{{ url_for('resume') }}"><span class="rec-icon green">▤</span><div><b>Check your resume</b><small>Get suggestions to improve your PDF resume</small></div><span class="pill green-pill">AI Resume</span><span class="arrow">→</span></a>
+</div></div>
+<div class="panel"><div class="panel-head"><div><h2>Preparation progress</h2><p>Your latest performance</p></div></div><div class="ring" style="--value:{{ avg }}"><div><strong>{{ avg }}%</strong><small>Average score</small></div></div><p class="center muted">Complete more quizzes to build your progress history.</p><a class="btn secondary full" href="{{ url_for('practice') }}">Practise now</a></div></section>
+<section class="panel"><div class="panel-head"><div><h2>Recent assessments</h2><p>Your saved quiz results</p></div><a href="{{ url_for('practice') }}">Take a quiz →</a></div>
+{% if assessments %}<div class="table-wrap"><table><thead><tr><th>Date</th><th>Assessment</th><th>Questions</th><th>Score</th></tr></thead><tbody>{% for a in assessments %}<tr><td>{{ a.created_at }}</td><td>{{ a.category }} Quiz</td><td>{{ a.total }}</td><td><span class="score">{{ a.score }}%</span></td></tr>{% endfor %}</tbody></table></div>{% else %}<div class="empty-state">📝<b>No assessments yet</b><span>Your completed quizzes will appear here.</span></div>{% endif %}</section>
+{% endblock %}
